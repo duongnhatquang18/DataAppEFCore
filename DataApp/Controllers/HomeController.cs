@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataApp.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,14 @@ namespace DataApp.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            Product[] products = new Product[]
+            {
+                new Product { Name = "P1", Category = "Cat1", Price = 10 },
+                new Product { Name = "P2", Category = "Cat2", Price = 20 },
+                new Product { Name = "P3", Category = "Cat3", Price = 30 },
+            };
+
+            return View(products);
         }
     }
 }
