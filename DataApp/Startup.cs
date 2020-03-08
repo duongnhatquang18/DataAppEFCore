@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DataApp.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -24,6 +26,14 @@ namespace DataApp
         {
             services.AddMvc()
                     .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_2);
+           
+            // add applicaiton service
+            services.AddTransient<IRepository, ProductRepository>();
+
+
+            // Set up EF core db context
+            string connectString = _configuration["ConnectionStrings:DefaultConnection"];
+            services.AddDbContext<EFDBContext>(options => options.UseSqlServer(connectString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

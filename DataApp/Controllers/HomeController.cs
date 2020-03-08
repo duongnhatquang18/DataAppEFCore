@@ -9,16 +9,47 @@ namespace DataApp.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private IRepository _repository;
+        public HomeController(IRepository repository)
         {
-            Product[] products = new Product[]
-            {
-                new Product { Name = "P1", Category = "Cat1", Price = 10 },
-                new Product { Name = "P2", Category = "Cat2", Price = 20 },
-                new Product { Name = "P3", Category = "Cat3", Price = 30 },
-            };
+            _repository = repository;
+        }
 
+        public IActionResult Index(string category = null, decimal? price = null)
+        {
+            var products = _repository.GetFilterProduct(category, price);
             return View(products);
         }
+        public IActionResult Create()
+        {
+            ViewBag.CreateMode = true;
+            return View("Editor", new Product());
+        }
+
+        [HttpPost]
+        public IActionResult Create(Product product)
+        {
+            _repository.AddProduct(product);
+            return RedirectToAction(nameof(Index));
+        }
+        public IActionResult Edit(int id)
+        {
+            ViewBag.CreateMode = false;
+            return View("Editor", _repository.GetProduct(id));
+        }
+        [HttpPost]
+        public IActionResult Edit(Product product)
+        {
+            _repository.UpdateProduct(product);
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            _repository.DeleteProduct(id);
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }

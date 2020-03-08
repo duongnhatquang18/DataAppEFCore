@@ -1,0 +1,39 @@
+1. ef core does not include where statement in sql
+re-produce:
+	var products = _context.Products;
+
+	if (!string.IsNullOrEmpty(category))
+	{
+		products.Where(p => p.Category == category);
+	}
+	products.tolist()
+	
+	sql statement: select * from products .
+	
+issue:
+	sql statement doesn't include the where statement .
+solution:
+	- products should be assigned to itself after using where.
+	- i.e
+
+		if (!string.IsNullOrEmpty(category))
+		{
+			procucts = products.Where(p => p.Category == category);
+		}
+2. Delete 
+	
+	As default we know that ef core support delete by passing object. But the input is just only id . 
+	i.e 
+		public void DeleteProduct(long id) {
+			Product p = context.Products.Find(id);
+			context.Products.Remove(p);
+			context.SaveChanges();
+		}
+	Question ? How can delete the object without reading the database ? 
+	Solution: Create a dummy object with Id = id.
+		public void DeleteProduct(long id) 
+		{
+			Product p = new Product{Id = id};
+			context.Products.Remove(p);
+			context.SaveChanges();
+		}
