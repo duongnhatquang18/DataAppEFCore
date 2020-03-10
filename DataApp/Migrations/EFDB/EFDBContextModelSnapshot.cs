@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace DataApp.Migrations
+namespace DataApp.Migrations.EFDB
 {
     [DbContext(typeof(EFDBContext))]
     partial class EFDBContextModelSnapshot : ModelSnapshot
@@ -25,6 +25,10 @@ namespace DataApp.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Category");
+
+                    b.Property<int>("Color");
+
+                    b.Property<bool>("InStock");
 
                     b.Property<string>("Name");
 

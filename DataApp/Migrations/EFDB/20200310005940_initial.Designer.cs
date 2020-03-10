@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace DataApp.Migrations
+namespace DataApp.Migrations.EFDB
 {
     [DbContext(typeof(EFDBContext))]
-    [Migration("20200308083358_initial")]
+    [Migration("20200310005940_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,6 +27,10 @@ namespace DataApp.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Category");
+
+                    b.Property<int>("Color");
+
+                    b.Property<bool>("InStock");
 
                     b.Property<string>("Name");
 

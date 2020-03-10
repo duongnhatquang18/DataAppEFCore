@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace DataApp.Models
 {
+    public enum Color
+    {
+        Red, Green, Blue
+    }
+
     public class Product
     {
         public int Id { get; set; }
@@ -14,5 +19,8 @@ namespace DataApp.Models
 
         [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
+
+        public Color Color { get; set; }
+        public bool InStock { get; set; }
     }
 }

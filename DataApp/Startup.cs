@@ -27,13 +27,20 @@ namespace DataApp
             services.AddMvc()
                     .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_2);
            
-            // add applicaiton service
-            services.AddTransient<IRepository, ProductRepository>();
+ 
 
 
             // Set up EF core db context
             string connectString = _configuration["ConnectionStrings:DefaultConnection"];
             services.AddDbContext<EFDBContext>(options => options.UseSqlServer(connectString));
+
+            string customerConnectString = _configuration["ConnectionStrings:CustomerConnection"];
+            services.AddDbContext<CustomerEFDBContext>(options => options.UseSqlServer(customerConnectString));
+
+            // add applicaiton service
+            services.AddTransient<IRepository, ProductRepository>();
+            services.AddTransient<ICustomerRepository, CustomerRepository>();
+            services.AddTransient<MigrationsManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
