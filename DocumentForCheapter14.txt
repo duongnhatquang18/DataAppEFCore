@@ -1,0 +1,7 @@
+work with relate table.
+- Showing the related data.
+- Edit the related data.
+	- product and supplier have the relationship. one product have one supplier. 
+	- Going through update the related data for product. 
+		- Creating a New Supplier When Creating a New Product
+			- Add the edit view for supplier on the product edit page.
