@@ -22,5 +22,7 @@ namespace DataApp.Models
 
         public Color Color { get; set; }
         public bool InStock { get; set; }
+
+        public Supplier Supplier { get; set; }
     }
 }

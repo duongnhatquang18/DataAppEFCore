@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,10 +29,10 @@ namespace DataApp.Models
 
         public List<Product> GetAllProduct()
         {
-            return _context.Products.ToList<Product>();
+            return _context.Products.Include(p => p.Category).ToList<Product>();
         }
 
-        public List<Product> GetFilterProduct(string category, decimal? minPrice)
+        public List<Product> GetFilterProduct(string category, decimal? minPrice, bool includeRelatedData)
         {
             IQueryable<Product> products = _context.Products;
 
@@ -45,12 +46,17 @@ namespace DataApp.Models
                products = products.Where(p => p.Price >= minPrice);
             }
 
+            if(includeRelatedData == true)
+            {
+                products = products.Include(p => p.Supplier);
+            }
+
             return products.ToList<Product>();
         }
 
         public Product GetProduct(int id)
         {
-            return _context.Products.Find(id);
+            return _context.Products.Include(p => p.Category).First(p => p.Id == id);
         }
 
         public void UpdateProduct(Product product)
