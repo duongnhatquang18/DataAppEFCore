@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 Problem											- 	Solution
 Create a relationship 								Add a navigation property and create and apply a migration
 Include related data in a query 					Use the Include and ThenInclude methods
@@ -13,4 +12,16 @@ work with relate table.
 	- Going through update the related data for product. 
 		- Creating a New Supplier When Creating a New Product
 			- Add the edit view for supplier on the product edit page.
+
+
+asdasda
+
+asdasd
+as
+d
+asd
+as
+d
+aaaaaaaaaaaaaaaaaaaaa
+
 
