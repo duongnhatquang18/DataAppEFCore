@@ -61,3 +61,6 @@ Understanding Migration
 There are 2 ways to seed data. one seed from controller and one seed from startup.
 for controller, it will be the good way to apply data in production.
 for start up, it not a good way to apply in the production. should apply in development.
+
+-sdasd
+sda
