@@ -5,7 +5,7 @@ Include related data in a query 					Use the Include and ThenInclude methods
 Store or update related data 						Use the methods provided by the context class 
 Delete related data 								Use the method provided by the context class 
 Create a required relationship 						Add a foreign key property with a non-nullable type
-=======
+
 work with relate table.
 - Showing the related data.
 - Edit the related data.
@@ -13,4 +13,4 @@ work with relate table.
 	- Going through update the related data for product. 
 		- Creating a New Supplier When Creating a New Product
 			- Add the edit view for supplier on the product edit page.
->>>>>>> c4cc54d7f4e8ab27e2607b35c7ecd2a9ab70b784
+
