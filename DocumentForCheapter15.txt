@@ -1,0 +1,20 @@
+Directly Accessing Related Data
+	1. Promoting Related Data
+		- Add the DBSet<Supplier> to EFDBContext
+		- run add-migration (because with adding to EFDBContext, the migration builder will build the new name for Supplier)
+		- add the SupplierRepository
+		- register ISupplierRepository and SupplierRepository in startup.cs
+		- add the RelatedDataController, add the RelatedData views
+	2. Accessing Related Data Using a Type Parameter
+		- implement generic repository.
+		- register IGenericRepository<ContactDetails>, GenericRepository<ContactDetails>>
+		- register IGenericRepository<ContactLocation>, GenericRepository<ContactLocation>
+		- Add action method for Contacts in the RelatedDataController
+		- Add action method for Locations in the RelatedDataController
+		- Add view for contacts, locations 
+	3. Complete relation 
+		- Add the inverser property to Supplier object. 
+			public class Supplier
+			{
+				public IList<Product> Products { get; set; }
+			}

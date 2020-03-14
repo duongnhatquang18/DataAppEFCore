@@ -40,6 +40,9 @@ namespace DataApp
             // add applicaiton service
             services.AddTransient<IRepository, ProductRepository>();
             services.AddTransient<ICustomerRepository, CustomerRepository>();
+            services.AddTransient<ISupplierRepository, SupplierRepository>();
+            services.AddTransient<IGenericRepository<ContactDetails>, GenericRepository<ContactDetails>>();
+            services.AddTransient<IGenericRepository<ContactLocation>, GenericRepository<ContactLocation>>();
             services.AddTransient<MigrationsManager>();
         }
 

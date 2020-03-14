@@ -1,4 +1,6 @@
-﻿namespace DataApp.Models
+﻿using System.Collections.Generic;
+
+namespace DataApp.Models
 {
     public class Supplier
     {
@@ -8,5 +10,6 @@
         public string State { get; set; }
 
         public ContactDetails ContactDetails { get; set; }
+        public IList<Product> Products { get; set; }
     }
 }
