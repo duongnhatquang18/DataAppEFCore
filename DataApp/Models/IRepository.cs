@@ -9,7 +9,7 @@ namespace DataApp.Models
     {
         Product GetProduct(int id);
         List<Product> GetAllProduct();
-        List<Product> GetFilterProduct(string category, decimal? price);
+        List<Product> GetFilterProduct(string category, decimal? price, bool includeRelatedData);
 
         void AddProduct(Product product);
         void UpdateProduct(Product product);
