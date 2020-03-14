@@ -41,6 +41,7 @@ namespace DataApp.Controllers
         [HttpPost]
         public IActionResult Edit(Product product)
         {
+            System.Console.Clear();
             _repository.UpdateProduct(product);
             return RedirectToAction(nameof(Index));
         }

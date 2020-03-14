@@ -12,3 +12,19 @@
     <label asp-for="Supplier.State"></label>
     <input asp-for="Supplier.State" class="form-control" />
 </div>
+@if (Model.Supplier?.ContactDetails != null)
+{
+    <div class="form-group">
+        <label asp-for="Supplier.ContactDetails.Name"></label>
+        <input asp-for="Supplier.ContactDetails.Name" class="form-control" readonly />
+    </div>
+    <div class="form-group">
+        <label asp-for="Supplier.ContactDetails.Phone"></label>
+        <input asp-for="Supplier.ContactDetails.Phone" class="form-control" readonly />
+    </div>
+    <div class="form-group">
+        <label asp-for="Supplier.ContactDetails.Location.LocationName"></label>
+        <input asp-for="Supplier.ContactDetails.Location.LocationName"
+               class="form-control" readonly />
+    </div>
+}

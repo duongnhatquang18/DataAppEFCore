@@ -12,27 +12,30 @@ work with relate table.
 	- Going through update the related data for product. 
 		- Creating a New Supplier When Creating a New Product
 			- Add the edit view for supplier on the product edit page.
+		- Updating a Supplier when Updating a Product
+		- Delete supplier when delete product.
 
+Creating a Required Relationship
+	- Add the supplierid to product model
+	- Run add migration 
+	- Now the relationship of product and supplier is casade. if we delete the supplier, the product also is deleted.
+	- (note before the relationship of product and supplier is restrict. 
+	        if we delete the supplier, some product depend on that supplier will be null and app throw exception)
+			
+Querying for Multiple Relationships
 
-asdasda
-
-asdasd
-as
-d
-asd
-as
-d
-aaaaaaaaaaaaaaaaaaaaa
-
-sd
-a
-
-
-
-
-commit 13
-commit 14
-commit 15
-commit 16
-commit 19
-commit 20
+	- Add ContactLocation model
+	- Add ContactDetails model - it will be navigate to ContactLocation.
+	- Add the navigate from Supplier to ContactDetail.
+	
+Querying the Chain of Navigation Properties
+	- Using Include().ThenInclude() to query the chain of navigation
+	i.e
+	Include(p => p.Supplier).ThenInclude(supplier => supplier.contact)
+	
+----------------------------------------------------------------------
+Note: 
+- foreign-key with type is restrict: when parent object is deleted, the app will throw the exception .
+- foreign-key with type is casade: 	 when parent object is deleted, the sub object will be also deleted .
+- using include().theninclude() for query the change of navigate properties.
+ 

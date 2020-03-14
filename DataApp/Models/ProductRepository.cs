@@ -56,7 +56,9 @@ namespace DataApp.Models
 
         public Product GetProduct(int id)
         {
-            return _context.Products.Include(p => p.Category).First(p => p.Id == id);
+            return _context.Products.Include(p => p.Supplier)
+                                    .ThenInclude(s => s.ContactDetails)
+                                    .First(p => p.Id == id);
         }
 
         public void UpdateProduct(Product product)
