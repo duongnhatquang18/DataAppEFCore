@@ -1,0 +1,6 @@
+Problem											- 	Solution
+Create a relationship 								Add a navigation property and create and apply a migration
+Include related data in a query 					Use the Include and ThenInclude methods
+Store or update related data 						Use the methods provided by the context class 
+Delete related data 								Use the method provided by the context class 
+Create a required relationship 						Add a foreign key property with a non-nullable type
