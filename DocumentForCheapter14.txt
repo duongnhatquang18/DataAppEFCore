@@ -1,63 +1,6 @@
-Key board:
-	Ctrl+Shift+. to zoom in.
-
-	Ctrl+Shift+, to zoom out.
-Understanding Migration
-1. Migration la gi ?
-	la tap hop cac command that prepase database for using with ef core. 
-	they are creatd database and keep database synchronized with data model. 
-2. Why are they useful?
-	automatic create and maintain database.
-4. Some command line: 
-	From powershell:
-		- create migration: 					add-migration 		<nameMigration>
-		- see the changes that migration did:   Script-Migration	-from <nameMigration> -to <nameMigration>
-		- apply migration to database		: 	update-database
-		- remove last migration				: 	remove-migration 
-			if migration is already applied in database, there is one exception is that 
-			this migration is applied in database. please revert it.
-		- revert migration 					:   Update-database <MyFirstMigration>
-			it will update database to the state of the "MyFirstMigration" migration. 
-			but the second migration is still here. so now you can use the "remove last migration" to remove that. 
-		- Drop-Database 					:   Drop-Database
-5. 
-	- There are 3 files is created after running migration. 
-		- 	Initial.cs			: It contains instructions creating for model objects.
-		-	Initial.Designer.cs : It contains instructions creating for model objects.
-		-	ModelSnapsoht.cs	: 
-		
-	- In Initial.cs: there are 2 method Up() and Down(). 
-		- Up()	: 	This method contains statements that upgrade the database to store entity data.
-			Base on the migration code, ef core will translate the statement commdn in database server.
-			if we configuraiton the provider is SQL, we will translate the sql statment . 
-			Up()
-			{
-				migrationBuilder.CreateTable(
-					name: "Products",
-					columns: table => new {
-						Id = table.Column<long>(nullable: false)
-							.Annotation("SqlServer:ValueGenerationStrategy",
-								SqlServerValueGenerationStrategy.IdentityColumn),
-						Category = table.Column<string>(nullable: true),
-						Name = table.Column<string>(nullable: true),
-						Price = table.Column<decimal>(nullable: false)
-					},
-					constraints: table => {
-						table.PrimaryKey("PK_Products", x => x.Id);
-					});
-				}
-			}
-		- Down():	This method contains statements that downgrade the database to its original state.
-			
-			Down(MigrationBuilder migrationBuilder)
-			{
-				migrationBuilder.DropTable(
-					name: "Products");
-			}
-	- How we can examination sql from the migration ? 
-		We can use statment - Script-Migration	to translate the migration to sql.  
-		
--------------------------------------------------------------------------------------------------------------------
-There are 2 ways to seed data. one seed from controller and one seed from startup.
-for controller, it will be the good way to apply data in production.
-for start up, it not a good way to apply in the production. should apply in development.
+Problem											- 	Solution
+Create a relationship 								Add a navigation property and create and apply a migration
+Include related data in a query 					Use the Include and ThenInclude methods
+Store or update related data 						Use the methods provided by the context class 
+Delete related data 								Use the method provided by the context class 
+Create a required relationship 						Add a foreign key property with a non-nullable type
